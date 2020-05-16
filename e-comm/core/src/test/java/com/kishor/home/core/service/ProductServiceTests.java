@@ -2,6 +2,7 @@ package com.kishor.home.core.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.doReturn;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,13 +20,12 @@ import com.kishor.home.core.repo.ProductRepo;
 @SpringBootTest
 public class ProductServiceTests {
 	@Autowired private ProductService productService;
-	
+
 	@MockBean private ProductRepo productRepo;
-	
+
 	@BeforeAll
 	static void startup() {
 		//Steps common for all tests
-		
 	}
 
 	@Test
@@ -42,6 +42,18 @@ public class ProductServiceTests {
 		assertThat(productSaved).isNotNull();
 		assertThat(productSaved).isEqualTo(productList.get(0));
 		assertThat(initialSize+1).isEqualTo(productList.size());
+	}
+
+	@Test
+	void searchTest() {
+		doReturn(createProduct("Rin", "Godrej")).when(productRepo).findByName(Mockito.anyString());
+
+		ProductEnt product = productService.search("Rin");
+		assertThat(product).isNotNull();
+		assertThat(product.getName()).isNotNull();
+		assertThat(product.getManufactorer()).isNotNull();
+		assertThat(product.getName()).isEqualTo("Rin");
+		assertThat(product.getManufactorer()).isEqualTo("Godrej");
 	}
 
 	private ProductEnt createProduct(final String name, final String manuf) {
