@@ -20,16 +20,20 @@ public class ProductService {
 	public ProductEnt create(final ProductEnt productEnt) {
 		return productRepo.save(productEnt);
 	}
-	
+
 	public List<ProductEnt> list() {
 		return productRepo.findAll();
 	}
-	
+
 	public void delete(final ProductEnt productEnt) {
 		productRepo.delete(productEnt);
 	}
-	
+
 	public Long totalProducts() {
 		return productRepo.count();
+	}
+
+	public ProductEnt search(final String name) {
+		return productRepo.findByName(name);
 	}
 }
