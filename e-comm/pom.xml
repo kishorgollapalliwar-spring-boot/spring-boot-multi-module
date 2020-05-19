@@ -15,7 +15,7 @@
 
     <modules>
         <module>core</module>
-        <!-- <module>web</module> -->
+        <module>web</module>
     </modules>
 
 </project>
