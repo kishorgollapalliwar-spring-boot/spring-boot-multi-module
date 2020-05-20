@@ -3,16 +3,19 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.springframework.boot</groupId>
+		<!-- <groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.3.0.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<version>2.3.0.RELEASE</version> -->
+		<groupId>com.kishor.home</groupId>
+		<artifactId>e-comm</artifactId>
+		<version>0.0.1-SNAPSHOT</version><!-- ${project.version} -->
+		<!-- <relativePath/> --> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.kishor.home</groupId>
+	<!-- <groupId>com.kishor.home</groupId> -->
 	<artifactId>web</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<!-- <version>0.0.1-SNAPSHOT</version> -->
 	<name>web</name>
-	<description>Web layer for e-comm</description>
+	<description>Web layer for e-comm project</description>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -62,6 +65,13 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<!-- e-comm dependencies -->
+		<dependency>
+			<groupId>com.kishor.home</groupId>
+			<artifactId>core</artifactId>
+			<version>0.0.1-SNAPSHOT</version> <!-- ${project.version} -->
 		</dependency>
 	</dependencies>
 
