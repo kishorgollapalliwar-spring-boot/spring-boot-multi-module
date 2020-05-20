@@ -17,9 +17,9 @@
 	<name>web</name>
 	<description>Web layer for e-comm project</description>
 
-	<properties>
+	<!-- <properties>
 		<java.version>1.8</java.version>
-	</properties>
+	</properties> -->
 
 	<dependencies>
 		<dependency>

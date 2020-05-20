@@ -13,9 +13,9 @@
 	<name>core</name>
 	<description>Encapsulates all core classes of e-comm</description>
 
-	<properties>
+	<!-- <properties>
 		<java.version>1.8</java.version>
-	</properties>
+	</properties> -->
 
 	<dependencies>
 		<dependency>
