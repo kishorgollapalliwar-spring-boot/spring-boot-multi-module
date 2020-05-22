@@ -18,4 +18,6 @@ public class ProductEnt {
 	private String name;
 
 	private String manufacturer;
+
+	private Double price;
 }
