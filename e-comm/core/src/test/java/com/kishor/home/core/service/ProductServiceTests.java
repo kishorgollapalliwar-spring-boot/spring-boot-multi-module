@@ -32,35 +32,50 @@ public class ProductServiceTests {
 	void createTest() {
 		List<ProductEnt> productList = new ArrayList<>();
 		int initialSize = productList.size();
-		
+
 		doAnswer(invocation -> {
 			productList.add(invocation.getArgument(0));
 			return invocation.getArgument(0);
 		}).when(productRepo).save(Mockito.any(ProductEnt.class));
-		
-		ProductEnt productSaved = productService.create(createProduct("Rin", "Godrej"));
+
+		ProductEnt productSaved = productService.create(createProduct("New Rin", "Hindustan Uniliver Limited", 10.00));
 		assertThat(productSaved).isNotNull();
 		assertThat(productSaved).isEqualTo(productList.get(0));
 		assertThat(initialSize+1).isEqualTo(productList.size());
+
+		compareProduct(productList.get(0), productSaved);
 	}
 
 	@Test
 	void searchTest() {
-		doReturn(createProduct("Rin", "Godrej")).when(productRepo).findByName(Mockito.anyString());
+		ProductEnt productEnt1 = createProduct("New Rin", "Hindustan Uniliver Limited", 10.00);
+		doReturn(productEnt1).when(productRepo).findByName(Mockito.anyString());
 
-		ProductEnt product = productService.search("Rin");
-		assertThat(product).isNotNull();
-		assertThat(product.getName()).isNotNull();
-		assertThat(product.getManufacturer()).isNotNull();
-		assertThat(product.getName()).isEqualTo("Rin");
-		assertThat(product.getManufacturer()).isEqualTo("Godrej");
+		ProductEnt productEnt2 = productService.search("New Rin");
+		compareProduct(productEnt1, productEnt2);
 	}
 
-	private ProductEnt createProduct(final String name, final String manufacturer) {
+	private void compareProduct(final ProductEnt productEnt1, final ProductEnt productEnt2) {
+		assertThat(productEnt1).isNotNull();
+		assertThat(productEnt2).isNotNull();
+
+		assertThat(productEnt1.getName()).isNotNull();
+		assertThat(productEnt2.getName()).isNotNull();
+
+		assertThat(productEnt1.getManufacturer()).isNotNull();
+		assertThat(productEnt2.getManufacturer()).isNotNull();
+
+		assertThat(productEnt1.getName()).isEqualTo(productEnt2.getName());
+		assertThat(productEnt1.getManufacturer()).isEqualTo(productEnt2.getManufacturer());
+		assertThat(productEnt1.getPrice()).isEqualTo(productEnt2.getPrice());
+	}
+
+	private ProductEnt createProduct(final String name, final String manufacturer, final Double price) {
 		ProductEnt productEnt = new ProductEnt();
 		productEnt.setName(name);
-		productEnt.setManufacturer(manufacturer);;
-		
+		productEnt.setManufacturer(manufacturer);
+		productEnt.setPrice(price);
+
 		return productEnt;
 	}
 }
