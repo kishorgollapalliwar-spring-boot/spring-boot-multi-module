@@ -17,5 +17,5 @@ public class ProductEnt {
 	@Column(unique=true)
 	private String name;
 
-	private String manufactorer;
+	private String manufacturer;
 }

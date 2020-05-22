@@ -51,15 +51,15 @@ public class ProductServiceTests {
 		ProductEnt product = productService.search("Rin");
 		assertThat(product).isNotNull();
 		assertThat(product.getName()).isNotNull();
-		assertThat(product.getManufactorer()).isNotNull();
+		assertThat(product.getManufacturer()).isNotNull();
 		assertThat(product.getName()).isEqualTo("Rin");
-		assertThat(product.getManufactorer()).isEqualTo("Godrej");
+		assertThat(product.getManufacturer()).isEqualTo("Godrej");
 	}
 
-	private ProductEnt createProduct(final String name, final String manuf) {
+	private ProductEnt createProduct(final String name, final String manufacturer) {
 		ProductEnt productEnt = new ProductEnt();
 		productEnt.setName(name);
-		productEnt.setManufactorer(manuf);
+		productEnt.setManufacturer(manufacturer);;
 		
 		return productEnt;
 	}
