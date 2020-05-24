@@ -40,16 +40,13 @@
     </style>
     <!-- Custom styles for this template -->
     <link href="https://getbootstrap.com/docs/4.4/examples/starter-template/starter-template.css" rel="stylesheet">
-
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script>
-/* $(document).ready(function(){
-   $.getJSON("http://localhost:8080/product/list", function(result){
-      console.log("result : "+result);
-      $.each(result, function(key,value) {
-         $("#productsJson").append(value.id+" "+value.name+" ");
-      }); 
-   });
-}); */
+ $.ajax({
+  url: "http://localhost:8080/product/list",
+}).done(function() {
+  console.log("result : "+result);
+});
 </script>
   </head>
   <body>
@@ -109,6 +106,8 @@
 </table>
   </div>
 </main><!-- /.container -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-      <script>window.jQuery || document.write('<script src="https://getbootstrap.com/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="https://getbootstrap.com/docs/4.4/assets/dist/js/bootstrap.bundle.js"></script></body>
+
+<script>window.jQuery || document.write('<script src="https://getbootstrap.com/docs/4.5/assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
+<script src="https://getbootstrap.com/docs/4.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd" crossorigin="anonymous"></script>
+</body>
 </html>
