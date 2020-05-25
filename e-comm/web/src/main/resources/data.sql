@@ -1,1 +1,1 @@
-INSERT INTO product_ent (id, name, manufacturer, price) values (2, 'Vim Bar', 'Hindustan Uniliver', 5);
+INSERT INTO product_ent (id, name, manufacturer, price) values (21, 'Dish Bar', 'Vim', 'Hindustan Uniliver');
