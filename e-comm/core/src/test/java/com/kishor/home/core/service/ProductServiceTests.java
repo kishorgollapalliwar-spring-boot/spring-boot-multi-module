@@ -38,7 +38,7 @@ public class ProductServiceTests {
 			return invocation.getArgument(0);
 		}).when(productRepo).save(Mockito.any(ProductEnt.class));
 
-		ProductEnt productSaved = productService.create(createProduct("New Rin", "Hindustan Uniliver Limited", 10.00));
+		ProductEnt productSaved = productService.create(createProduct("New Rin", "Hindustan Uniliver Limited", "Rin"));
 		assertThat(productSaved).isNotNull();
 		assertThat(productSaved).isEqualTo(productList.get(0));
 		assertThat(initialSize+1).isEqualTo(productList.size());
@@ -48,7 +48,7 @@ public class ProductServiceTests {
 
 	@Test
 	void searchTest() {
-		ProductEnt productEnt1 = createProduct("New Rin", "Hindustan Uniliver Limited", 10.00);
+		ProductEnt productEnt1 = createProduct("New Rin", "Hindustan Uniliver Limited", "Rin");
 		doReturn(productEnt1).when(productRepo).findByName(Mockito.anyString());
 
 		ProductEnt productEnt2 = productService.search("New Rin");
@@ -67,14 +67,14 @@ public class ProductServiceTests {
 
 		assertThat(productEnt1.getName()).isEqualTo(productEnt2.getName());
 		assertThat(productEnt1.getManufacturer()).isEqualTo(productEnt2.getManufacturer());
-		assertThat(productEnt1.getPrice()).isEqualTo(productEnt2.getPrice());
+		assertThat(productEnt1.getBrand()).isEqualTo(productEnt2.getBrand());
 	}
 
-	private ProductEnt createProduct(final String name, final String manufacturer, final Double price) {
+	private ProductEnt createProduct(final String name, final String manufacturer, final String brand) {
 		ProductEnt productEnt = new ProductEnt();
 		productEnt.setName(name);
 		productEnt.setManufacturer(manufacturer);
-		productEnt.setPrice(price);
+		productEnt.setBrand(brand);
 
 		return productEnt;
 	}
