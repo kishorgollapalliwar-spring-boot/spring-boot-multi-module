@@ -49,9 +49,9 @@ public class ProductServiceTests {
 	@Test
 	void searchTest() {
 		ProductEnt productEnt1 = createProduct("New Rin", "Hindustan Uniliver Limited", "Rin");
-		doReturn(productEnt1).when(productRepo).findByName(Mockito.anyString());
+		doReturn(productEnt1).when(productRepo).findByNameAndBrand(Mockito.anyString(), Mockito.anyString());
 
-		ProductEnt productEnt2 = productService.search("New Rin");
+		ProductEnt productEnt2 = productService.search("New Rin", "Rin");
 		compareProduct(productEnt1, productEnt2);
 	}
 
