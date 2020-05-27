@@ -33,7 +33,7 @@ public class ProductService {
 		return productRepo.count();
 	}
 
-	public ProductEnt search(final String name) {
-		return productRepo.findByName(name);
+	public ProductEnt search(final String name, final String brand) {
+		return productRepo.findByNameAndBrand(name, brand);
 	}
 }
