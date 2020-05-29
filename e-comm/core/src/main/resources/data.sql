@@ -1,3 +1,4 @@
+-- product
 INSERT INTO product_ent (id, name, brand, manufacturer) values (1, 'Care','Lifebuoy','Unilever');
 INSERT INTO product_ent (id, name, brand, manufacturer) values (2, 'Nature','Lifebuoy','Unilever');
 INSERT INTO product_ent (id, name, brand, manufacturer) values (3, 'Lemon Fresh','Lifebuoy','Unilever');
@@ -18,3 +19,45 @@ INSERT INTO product_ent (id, name, brand, manufacturer) values (17, 'HYPNOTIC RO
 INSERT INTO product_ent (id, name, brand, manufacturer) values (18, 'ICONIC IRIS','Lux','Unilever');
 INSERT INTO product_ent (id, name, brand, manufacturer) values (19, 'FRESH SPLASH','Lux','Unilever');
 INSERT INTO product_ent (id, name, brand, manufacturer) values (20, 'CREAMY PERFECTION','Lux','Unilever');
+
+-- product item
+INSERT INTO product_item_ent (id, name, description, product_id) values (1, '75g', '75g variant', 1);
+INSERT INTO product_item_ent (id, name, description, product_id) values (2, '1250g', '1250g variant', 1);
+INSERT INTO product_item_ent (id, name, description, product_id) values (3, '75g', '75g variant', 2);
+INSERT INTO product_item_ent (id, name, description, product_id) values (4, '1250g', '1250g variant', 2);
+INSERT INTO product_item_ent (id, name, description, product_id) values (5, '75g', '75g variant', 3);
+INSERT INTO product_item_ent (id, name, description, product_id) values (6, '1250g', '1250g variant', 3);
+INSERT INTO product_item_ent (id, name, description, product_id) values (7, '75g', '75g variant', 4);
+INSERT INTO product_item_ent (id, name, description, product_id) values (8, '1250g', '1250g variant', 4);
+INSERT INTO product_item_ent (id, name, description, product_id) values (9, '75g', '75g variant', 5);
+INSERT INTO product_item_ent (id, name, description, product_id) values (10, '1250g', '1250g variant', 5);
+INSERT INTO product_item_ent (id, name, description, product_id) values (11, '75g', '75g variant', 6);
+INSERT INTO product_item_ent (id, name, description, product_id) values (12, '1250g', '1250g variant', 6);
+INSERT INTO product_item_ent (id, name, description, product_id) values (13, '75g', '75g variant', 7);
+INSERT INTO product_item_ent (id, name, description, product_id) values (14, '1250g', '1250g variant', 7);
+INSERT INTO product_item_ent (id, name, description, product_id) values (15, '75g', '75g variant', 8);
+INSERT INTO product_item_ent (id, name, description, product_id) values (16, '1250g', '1250g variant', 8);
+INSERT INTO product_item_ent (id, name, description, product_id) values (17, '75g', '75g variant', 9);
+INSERT INTO product_item_ent (id, name, description, product_id) values (18, '1250g', '1250g variant', 9);
+INSERT INTO product_item_ent (id, name, description, product_id) values (19, '75g', '75g variant', 10);
+INSERT INTO product_item_ent (id, name, description, product_id) values (20, '1250g', '1250g variant', 10);
+INSERT INTO product_item_ent (id, name, description, product_id) values (21, '75g', '75g variant', 11);
+INSERT INTO product_item_ent (id, name, description, product_id) values (22, '1250g', '1250g variant', 11);
+INSERT INTO product_item_ent (id, name, description, product_id) values (23, '75g', '75g variant', 12);
+INSERT INTO product_item_ent (id, name, description, product_id) values (24, '1250g', '1250g variant', 12);
+INSERT INTO product_item_ent (id, name, description, product_id) values (25, '75g', '75g variant', 13);
+INSERT INTO product_item_ent (id, name, description, product_id) values (26, '1250g', '1250g variant', 13);
+INSERT INTO product_item_ent (id, name, description, product_id) values (27, '75g', '75g variant', 14);
+INSERT INTO product_item_ent (id, name, description, product_id) values (28, '1250g', '1250g variant', 14);
+INSERT INTO product_item_ent (id, name, description, product_id) values (29, '75g', '75g variant', 15);
+INSERT INTO product_item_ent (id, name, description, product_id) values (30, '1250g', '1250g variant', 15);
+INSERT INTO product_item_ent (id, name, description, product_id) values (31, '75g', '75g variant', 16);
+INSERT INTO product_item_ent (id, name, description, product_id) values (32, '1250g', '1250g variant', 16);
+INSERT INTO product_item_ent (id, name, description, product_id) values (33, '75g', '75g variant', 17);
+INSERT INTO product_item_ent (id, name, description, product_id) values (34, '1250g', '1250g variant', 17);
+INSERT INTO product_item_ent (id, name, description, product_id) values (35, '75g', '75g variant', 18);
+INSERT INTO product_item_ent (id, name, description, product_id) values (36, '1250g', '1250g variant', 18);
+INSERT INTO product_item_ent (id, name, description, product_id) values (37, '75g', '75g variant', 19);
+INSERT INTO product_item_ent (id, name, description, product_id) values (38, '1250g', '1250g variant', 19);
+INSERT INTO product_item_ent (id, name, description, product_id) values (39, '75g', '75g variant', 20);
+INSERT INTO product_item_ent (id, name, description, product_id) values (40, '1250g', '1250g variant', 20);
