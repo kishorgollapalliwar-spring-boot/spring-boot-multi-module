@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kishor.home.core.entity.ProductEnt;
 import com.kishor.home.core.entity.ProductItemEnt;
 import com.kishor.home.core.repo.ProductItemRepo;
 
@@ -31,5 +32,9 @@ public class ProductItemService {
 
 	public Long totalProductItems() {
 		return productItemRepo.count();
+	}
+
+	public List<ProductItemEnt> searchByProduct(final ProductEnt product) {
+		return productItemRepo.findByProduct(product);
 	}
 }
