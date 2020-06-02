@@ -2,6 +2,7 @@ package com.kishor.home.core.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.doReturn;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +45,18 @@ public class ProductItemServiceTests {
 		assertThat(initialSize+1).isEqualTo(productItemList.size());
 
 		compareProductItem(productItemList.get(0), productItemSaved);
+	}
+
+	@Test
+	void searchTest() {
+		ProductItemEnt productItem = createProductItem("New Rin", "Hindustan Uniliver Limited", "Rin", "50gm", "50gm + 12% extra");
+		List<ProductItemEnt> productItemList = new ArrayList<>();
+		productItemList.add(productItem);
+
+		doReturn(productItemList).when(productItemRepo).findByProduct(Mockito.any(ProductEnt.class));
+
+		List<ProductItemEnt> productItemListReturned = productItemService.searchByProduct(new ProductEnt());
+		compareProductItem(productItem, productItemListReturned.get(0));
 	}
 
 	private void compareProductItem(final ProductItemEnt productItem1, final ProductItemEnt productItem2) {
