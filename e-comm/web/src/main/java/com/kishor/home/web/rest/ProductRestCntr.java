@@ -15,7 +15,7 @@ import com.kishor.home.core.service.ProductService;
 public class ProductRestCntr {
 	@Autowired private ProductService productService;
 
-	@GetMapping("/list")
+	@GetMapping(path = {"/", "/list"})
 	public List<ProductEnt> list() {
 		return productService.list();
 	}
