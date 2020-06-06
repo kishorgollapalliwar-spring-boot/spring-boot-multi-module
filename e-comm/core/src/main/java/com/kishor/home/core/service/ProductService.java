@@ -1,10 +1,12 @@
 package com.kishor.home.core.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kishor.home.core.dto.ProductDTO;
 import com.kishor.home.core.entity.ProductEnt;
 import com.kishor.home.core.repo.ProductRepo;
 
@@ -36,4 +38,10 @@ public class ProductService {
 	public ProductEnt search(final String name, final String brand) {
 		return productRepo.findByNameAndBrand(name, brand);
 	}
+
+	public ProductDTO getById(final Integer id) {
+		Optional<ProductEnt> product = productRepo.findById(id);
+		return product.isPresent() ? new ProductDTO(product.get()) : null;
+	}
+
 }
