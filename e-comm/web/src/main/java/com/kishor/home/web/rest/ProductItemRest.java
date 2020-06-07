@@ -12,18 +12,23 @@ import com.kishor.home.core.dto.ProductItemDTO;
 import com.kishor.home.core.entity.ProductItemEnt;
 import com.kishor.home.core.service.ProductItemService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @RestController
 @RequestMapping(path = {"/product-item"})
+@Slf4j
 public class ProductItemRest {
 	@Autowired private ProductItemService productItemService;
 
 	@GetMapping(path = {"/", "/list"})
 	public List<ProductItemEnt> list() {
+		log.info("Request to get all product item is received.");
 		return productItemService.list();
 	}
 
 	@GetMapping(path = {"/{id}"})
 	public ProductItemDTO getById(@PathVariable("id")final Integer id) {
+		log.info("Request to get product item with id[{}] is received.", id);
 		return productItemService.getById(id);
 	}
 }
