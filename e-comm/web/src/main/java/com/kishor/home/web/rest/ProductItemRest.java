@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kishor.home.core.dto.ProductItemDTO;
 import com.kishor.home.core.entity.ProductItemEnt;
 import com.kishor.home.core.service.ProductItemService;
 
@@ -18,5 +20,10 @@ public class ProductItemRest {
 	@GetMapping(path = {"/", "/list"})
 	public List<ProductItemEnt> list() {
 		return productItemService.list();
+	}
+
+	@GetMapping(path = {"/{id}"})
+	public ProductItemDTO getById(@PathVariable("id")final Integer id) {
+		return productItemService.getById(id);
 	}
 }
