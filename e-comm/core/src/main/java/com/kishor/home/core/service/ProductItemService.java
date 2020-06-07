@@ -1,10 +1,12 @@
 package com.kishor.home.core.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kishor.home.core.dto.ProductItemDTO;
 import com.kishor.home.core.entity.ProductEnt;
 import com.kishor.home.core.entity.ProductItemEnt;
 import com.kishor.home.core.repo.ProductItemRepo;
@@ -36,5 +38,10 @@ public class ProductItemService {
 
 	public List<ProductItemEnt> searchByProduct(final ProductEnt product) {
 		return productItemRepo.findByProduct(product);
+	}
+
+	public ProductItemDTO getById(final Integer id) {
+		Optional<ProductItemEnt> productItem = productItemRepo.findById(id);
+		return productItem.isPresent() ? new ProductItemDTO(productItem.get()) : null;
 	}
 }
