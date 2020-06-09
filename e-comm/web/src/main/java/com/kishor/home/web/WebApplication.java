@@ -1,7 +1,9 @@
 package com.kishor.home.web;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication(scanBasePackages = {"com.kishor.home"})
 public class WebApplication {
@@ -10,4 +12,8 @@ public class WebApplication {
 		SpringApplication.run(WebApplication.class, args);
 	}
 
+	@Bean
+	public ModelMapper modelMapper() {
+		return new ModelMapper();
+	}
 }
