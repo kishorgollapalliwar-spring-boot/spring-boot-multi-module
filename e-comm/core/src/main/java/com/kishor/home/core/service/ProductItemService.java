@@ -3,6 +3,7 @@ package com.kishor.home.core.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,10 +15,12 @@ import com.kishor.home.core.repo.ProductItemRepo;
 @Service
 public class ProductItemService {
 	private ProductItemRepo productItemRepo;
+	private ModelMapper modelMapper;
 
 	@Autowired
-	public ProductItemService(ProductItemRepo productItemRepo) {
+	public ProductItemService(final ProductItemRepo productItemRepo, final ModelMapper modelMapper) {
 		this.productItemRepo = productItemRepo;
+		this.modelMapper = modelMapper;
 	}
 
 	public List<ProductItemEnt> list() {
@@ -42,6 +45,6 @@ public class ProductItemService {
 
 	public ProductItemDTO getById(final Integer id) {
 		Optional<ProductItemEnt> productItem = productItemRepo.findById(id);
-		return productItem.isPresent() ? new ProductItemDTO(productItem.get()) : null;
+		return productItem.isPresent() ? new ProductItemDTO(modelMapper, productItem.get()) : null;
 	}
 }
