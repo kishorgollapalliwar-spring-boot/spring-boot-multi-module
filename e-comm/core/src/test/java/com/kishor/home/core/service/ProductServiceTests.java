@@ -47,11 +47,33 @@ public class ProductServiceTests {
 	}
 
 	@Test
+	void listTest() {
+		List<ProductEnt> productList = new ArrayList<>();
+		ProductEnt productLifeBuoyCare = createProduct("Care", "Unilever", "Lifebuoy");
+		ProductEnt productLifeBuoyNature= createProduct("Nature", "Unilever", "Lifebuoy");
+
+		productList.add(productLifeBuoyCare);
+		productList.add(productLifeBuoyNature);
+
+		doAnswer(invocation -> {
+			return productList;
+		}).when(productRepo).findAll();
+
+		List<ProductEnt> fetchedProductList = productService.list();
+		assertThat(fetchedProductList).isNotNull();
+		assertThat(fetchedProductList.isEmpty()).isFalse();
+
+		for (int index = 0; index < fetchedProductList.size(); index++) {
+			compareProduct(fetchedProductList.get(index), productList.get(index));
+		}
+	}
+
+	@Test
 	void searchTest() {
-		ProductEnt productEnt1 = createProduct("New Rin", "Hindustan Uniliver Limited", "Rin");
+		ProductEnt productEnt1 = createProduct("Care", "Unilever", "Lifebuoy");
 		doReturn(productEnt1).when(productRepo).findByNameAndBrand(Mockito.anyString(), Mockito.anyString());
 
-		ProductEnt productEnt2 = productService.search("New Rin", "Rin");
+		ProductEnt productEnt2 = productService.search("Care", "Lifebuoy");
 		compareProduct(productEnt1, productEnt2);
 	}
 
