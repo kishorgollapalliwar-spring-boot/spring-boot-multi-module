@@ -38,7 +38,7 @@ public class ProductServiceTests {
 			return invocation.getArgument(0);
 		}).when(productRepo).save(Mockito.any(ProductEnt.class));
 
-		ProductEnt productSaved = productService.create(createProduct("New Rin", "Hindustan Uniliver Limited", "Rin"));
+		ProductEnt productSaved = productService.create(createProduct("Care", "Unilever", "Lifebuoy"));
 		assertThat(productSaved).isNotNull();
 		assertThat(productSaved).isEqualTo(productList.get(0));
 		assertThat(initialSize+1).isEqualTo(productList.size());
