@@ -39,17 +39,17 @@ public class ProductItemServiceTests {
 			return invocation.getArgument(0);
 		}).when(productItemRepo).save(Mockito.any(ProductItemEnt.class));
 
-		ProductItemEnt productItemSaved = productItemService.create(createProductItem("New Rin", "Hindustan Uniliver Limited", "Rin", "50gm", "50gm + 12% extra"));
+		ProductItemEnt productItemSaved = productItemService.create(createProductItem("Care", "Unilever", "Lifebuoy", "50gm", "50gm + 12% extra"));
 		assertThat(productItemSaved).isNotNull();
 		assertThat(productItemSaved).isEqualTo(productItemList.get(0));
-		assertThat(initialSize+1).isEqualTo(productItemList.size());
+		assertThat(initialSize + 1).isEqualTo(productItemList.size());
 
 		compareProductItem(productItemList.get(0), productItemSaved);
 	}
 
 	@Test
 	void searchTest() {
-		ProductItemEnt productItem = createProductItem("New Rin", "Hindustan Uniliver Limited", "Rin", "50gm", "50gm + 12% extra");
+		ProductItemEnt productItem = createProductItem("Care", "Unilever", "Lifebuoy", "50gm", "50gm + 12% extra");
 		List<ProductItemEnt> productItemList = new ArrayList<>();
 		productItemList.add(productItem);
 
@@ -60,7 +60,6 @@ public class ProductItemServiceTests {
 	}
 
 	private void compareProductItem(final ProductItemEnt productItem1, final ProductItemEnt productItem2) {
-		// TODO Auto-generated method stub
 		assertThat(productItem1).isNotNull();
 		assertThat(productItem2).isNotNull();
 
