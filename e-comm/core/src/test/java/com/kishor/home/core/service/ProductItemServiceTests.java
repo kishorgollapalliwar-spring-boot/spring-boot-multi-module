@@ -30,6 +30,28 @@ public class ProductItemServiceTests {
 	}
 
 	@Test
+	void listTest() {
+		List<ProductItemEnt> productItemList = new ArrayList<>();
+		ProductItemEnt productLifeBuoyCare = createProductItem("Care", "Unilever", "Lifebuoy", "50gm", "50gm + 12% extra");
+		ProductItemEnt productLifeBuoyNature= createProductItem("Nature", "Unilever", "Lifebuoy", "50gm", "50gm + 12% extra");
+
+		productItemList.add(productLifeBuoyCare);
+		productItemList.add(productLifeBuoyNature);
+
+		doAnswer(invocation -> {
+			return productItemList;
+		}).when(productItemRepo).findAll();
+
+		List<ProductItemEnt> fetchedProductItemList = productItemService.list();
+		assertThat(fetchedProductItemList).isNotNull();
+		assertThat(fetchedProductItemList.isEmpty()).isFalse();
+
+		for (int index = 0; index < fetchedProductItemList.size(); index++) {
+			compareProductItem(fetchedProductItemList.get(index), productItemList.get(index));
+		}
+	}
+
+	@Test
 	void createTest() {
 		List<ProductItemEnt> productItemList = new ArrayList<>();
 		int initialSize = productItemList.size();
