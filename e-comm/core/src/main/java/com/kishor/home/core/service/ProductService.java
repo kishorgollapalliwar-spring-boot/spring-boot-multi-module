@@ -2,6 +2,7 @@ package com.kishor.home.core.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,11 @@ public class ProductService {
 		return productRepo.save(productEnt);
 	}
 
-	public List<ProductEnt> list() {
-		return productRepo.findAll();
+	public List<ProductDTO> list() {
+		return productRepo.findAll()
+				.stream()
+				.map(ent -> new ProductDTO(modelMapper, ent))
+				.collect(Collectors.toList());
 	}
 
 	public void delete(final ProductEnt productEnt) {
