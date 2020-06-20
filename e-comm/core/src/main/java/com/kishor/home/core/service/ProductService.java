@@ -1,6 +1,7 @@
 package com.kishor.home.core.service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -23,8 +24,14 @@ public class ProductService {
 		this.modelMapper = modelMapper;
 	}
 
-	public ProductEnt create(final ProductEnt productEnt) {
-		return productRepo.save(productEnt);
+	public ProductDTO create(final ProductDTO productDTO) {
+		ProductDTO finalProductDTO = null;
+		if (Objects.nonNull(productDTO)) {
+			ProductEnt productEnt = productDTO.getEntity(modelMapper, ProductEnt.class);
+			ProductEnt savedProductEnt = productRepo.save(productEnt);
+			finalProductDTO = new ProductDTO(modelMapper, savedProductEnt);
+		}
+		return finalProductDTO;
 	}
 
 	public List<ProductDTO> list() {
