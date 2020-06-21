@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.kishor.home.core.dto.ProductDTO;
 import com.kishor.home.core.entity.ProductEnt;
@@ -51,8 +52,18 @@ public class ProductService {
 		return productRepo.count();
 	}
 
-	public ProductEnt search(final String name, final String brand) {
-		return productRepo.findByNameAndBrand(name, brand);
+	public ProductDTO search(final String name, final String brand) {
+		ProductDTO finalProductDTO = null;
+		if (StringUtils.isEmpty(name) || StringUtils.isEmpty(brand)) {
+			return finalProductDTO;
+		}
+
+		ProductEnt product = productRepo.findByNameAndBrand(name, brand);
+		if (Objects.nonNull(product)) {
+			finalProductDTO = new ProductDTO(modelMapper, product);
+		}
+
+		return finalProductDTO;
 	}
 
 	public ProductDTO getById(final Integer id) {
