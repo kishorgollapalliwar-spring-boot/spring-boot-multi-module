@@ -41,8 +41,10 @@ public class ProductService {
 				.collect(Collectors.toList());
 	}
 
-	public void delete(final ProductEnt productEnt) {
-		productRepo.delete(productEnt);
+	public void delete(final ProductDTO productDTO) {
+		if (Objects.nonNull(productDTO)) {
+			productRepo.delete(productDTO.getEntity(modelMapper, ProductEnt.class));
+		}
 	}
 
 	public Long totalProducts() {
