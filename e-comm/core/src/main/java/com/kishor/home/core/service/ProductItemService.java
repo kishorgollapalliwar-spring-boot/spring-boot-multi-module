@@ -1,5 +1,7 @@
 package com.kishor.home.core.service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -9,6 +11,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kishor.home.core.dto.ProductDTO;
 import com.kishor.home.core.dto.ProductItemDTO;
 import com.kishor.home.core.entity.ProductEnt;
 import com.kishor.home.core.entity.ProductItemEnt;
@@ -52,8 +55,17 @@ public class ProductItemService {
 		return productItemRepo.count();
 	}
 
-	public List<ProductItemEnt> searchByProduct(final ProductEnt product) {
-		return productItemRepo.findByProduct(product);
+	public List<ProductItemDTO> searchByProduct(final ProductDTO productDTO) {
+		List<ProductItemDTO> finalProductItemDTOList = Collections.EMPTY_LIST;
+		if (Objects.nonNull(productDTO)) {
+			ProductEnt productEnt = productDTO.getEntity(modelMapper, ProductEnt.class);
+			List<ProductItemEnt> productItemList = productItemRepo.findByProduct(productEnt);
+			finalProductItemDTOList = productItemList.stream()
+					.map(ent -> new ProductItemDTO(modelMapper, ent))
+					.collect(Collectors.toList());
+		}
+
+		return finalProductItemDTOList;
 	}
 
 	public ProductItemDTO getById(final Integer id) {
