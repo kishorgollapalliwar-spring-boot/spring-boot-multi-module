@@ -56,7 +56,7 @@ public class ProductItemService {
 	}
 
 	public List<ProductItemDTO> searchByProduct(final ProductDTO productDTO) {
-		List<ProductItemDTO> finalProductItemDTOList = Collections.EMPTY_LIST;
+		List<ProductItemDTO> finalProductItemDTOList = Collections.emptyList();
 		if (Objects.nonNull(productDTO)) {
 			ProductEnt productEnt = productDTO.getEntity(modelMapper, ProductEnt.class);
 			List<ProductItemEnt> productItemList = productItemRepo.findByProduct(productEnt);
