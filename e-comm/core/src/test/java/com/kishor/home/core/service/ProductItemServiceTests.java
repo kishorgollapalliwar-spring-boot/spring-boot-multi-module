@@ -98,19 +98,19 @@ public class ProductItemServiceTests {
 		compareProduct(productItemDTO.getProduct(), productItemDTO2.getProduct());
 	}
 
-	private void compareProduct(final ProductDTO productDTO, final ProductEnt productEnt2) {
+	private void compareProduct(final ProductDTO productDTO, final ProductDTO productDTO2) {
 		assertThat(productDTO).isNotNull();
-		assertThat(productEnt2).isNotNull();
+		assertThat(productDTO2).isNotNull();
 
 		assertThat(productDTO.getName()).isNotNull();
-		assertThat(productEnt2.getName()).isNotNull();
+		assertThat(productDTO2.getName()).isNotNull();
 
 		assertThat(productDTO.getManufacturer()).isNotNull();
-		assertThat(productEnt2.getManufacturer()).isNotNull();
+		assertThat(productDTO2.getManufacturer()).isNotNull();
 
-		assertThat(productDTO.getName()).isEqualTo(productEnt2.getName());
-		assertThat(productDTO.getManufacturer()).isEqualTo(productEnt2.getManufacturer());
-		assertThat(productDTO.getBrand()).isEqualTo(productEnt2.getBrand());
+		assertThat(productDTO.getName()).isEqualTo(productDTO2.getName());
+		assertThat(productDTO.getManufacturer()).isEqualTo(productDTO2.getManufacturer());
+		assertThat(productDTO.getBrand()).isEqualTo(productDTO2.getBrand());
 	}
 
 	private ProductItemEnt createProductItem(final String name, final String manufacturer, final String brand, final String productItemName, final String productItemDesc) {
