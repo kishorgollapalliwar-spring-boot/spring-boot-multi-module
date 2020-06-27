@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import com.kishor.home.core.dto.ProductDTO;
+import com.kishor.home.core.dto.ProductItemDTO;
 import com.kishor.home.core.entity.ProductEnt;
 import com.kishor.home.core.entity.ProductItemEnt;
 import com.kishor.home.core.repo.ProductItemRepo;
@@ -42,7 +44,7 @@ public class ProductItemServiceTests {
 			return productItemList;
 		}).when(productItemRepo).findAll();
 
-		List<ProductItemEnt> fetchedProductItemList = productItemService.list();
+		List<ProductItemDTO> fetchedProductItemList = productItemService.list();
 		assertThat(fetchedProductItemList).isNotNull();
 		assertThat(fetchedProductItemList.isEmpty()).isFalse();
 
@@ -81,34 +83,34 @@ public class ProductItemServiceTests {
 		compareProductItem(productItem, productItemListReturned.get(0));
 	}
 
-	private void compareProductItem(final ProductItemEnt productItem1, final ProductItemEnt productItem2) {
-		assertThat(productItem1).isNotNull();
+	private void compareProductItem(final ProductItemDTO productItemDTO, final ProductItemEnt productItem2) {
+		assertThat(productItemDTO).isNotNull();
 		assertThat(productItem2).isNotNull();
 
-		assertThat(productItem1.getName()).isNotNull();
+		assertThat(productItemDTO.getName()).isNotNull();
 		assertThat(productItem2.getName()).isNotNull();
 
-		assertThat(productItem1.getDescription()).isNotNull();
+		assertThat(productItemDTO.getDescription()).isNotNull();
 		assertThat(productItem2.getDescription()).isNotNull();
 
-		assertThat(productItem1.getName()).isEqualTo(productItem2.getName());
-		assertThat(productItem1.getDescription()).isEqualTo(productItem2.getDescription());
-		compareProduct(productItem1.getProduct(), productItem2.getProduct());
+		assertThat(productItemDTO.getName()).isEqualTo(productItem2.getName());
+		assertThat(productItemDTO.getDescription()).isEqualTo(productItem2.getDescription());
+		compareProduct(productItemDTO.getProduct(), productItem2.getProduct());
 	}
 
-	private void compareProduct(final ProductEnt productEnt1, final ProductEnt productEnt2) {
-		assertThat(productEnt1).isNotNull();
+	private void compareProduct(final ProductDTO productDTO, final ProductEnt productEnt2) {
+		assertThat(productDTO).isNotNull();
 		assertThat(productEnt2).isNotNull();
 
-		assertThat(productEnt1.getName()).isNotNull();
+		assertThat(productDTO.getName()).isNotNull();
 		assertThat(productEnt2.getName()).isNotNull();
 
-		assertThat(productEnt1.getManufacturer()).isNotNull();
+		assertThat(productDTO.getManufacturer()).isNotNull();
 		assertThat(productEnt2.getManufacturer()).isNotNull();
 
-		assertThat(productEnt1.getName()).isEqualTo(productEnt2.getName());
-		assertThat(productEnt1.getManufacturer()).isEqualTo(productEnt2.getManufacturer());
-		assertThat(productEnt1.getBrand()).isEqualTo(productEnt2.getBrand());
+		assertThat(productDTO.getName()).isEqualTo(productEnt2.getName());
+		assertThat(productDTO.getManufacturer()).isEqualTo(productEnt2.getManufacturer());
+		assertThat(productDTO.getBrand()).isEqualTo(productEnt2.getBrand());
 	}
 
 	private ProductItemEnt createProductItem(final String name, final String manufacturer, final String brand, final String productItemName, final String productItemDesc) {
