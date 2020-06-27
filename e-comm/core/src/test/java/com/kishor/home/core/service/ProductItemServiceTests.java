@@ -83,19 +83,19 @@ public class ProductItemServiceTests {
 		compareProductItem(productItem, productItemListReturned.get(0));
 	}
 
-	private void compareProductItem(final ProductItemDTO productItemDTO, final ProductItemEnt productItem2) {
+	private void compareProductItem(final ProductItemDTO productItemDTO, final ProductItemDTO productItemDTO2) {
 		assertThat(productItemDTO).isNotNull();
-		assertThat(productItem2).isNotNull();
+		assertThat(productItemDTO2).isNotNull();
 
 		assertThat(productItemDTO.getName()).isNotNull();
-		assertThat(productItem2.getName()).isNotNull();
+		assertThat(productItemDTO2.getName()).isNotNull();
 
 		assertThat(productItemDTO.getDescription()).isNotNull();
-		assertThat(productItem2.getDescription()).isNotNull();
+		assertThat(productItemDTO2.getDescription()).isNotNull();
 
-		assertThat(productItemDTO.getName()).isEqualTo(productItem2.getName());
-		assertThat(productItemDTO.getDescription()).isEqualTo(productItem2.getDescription());
-		compareProduct(productItemDTO.getProduct(), productItem2.getProduct());
+		assertThat(productItemDTO.getName()).isEqualTo(productItemDTO2.getName());
+		assertThat(productItemDTO.getDescription()).isEqualTo(productItemDTO2.getDescription());
+		compareProduct(productItemDTO.getProduct(), productItemDTO2.getProduct());
 	}
 
 	private void compareProduct(final ProductDTO productDTO, final ProductEnt productEnt2) {
