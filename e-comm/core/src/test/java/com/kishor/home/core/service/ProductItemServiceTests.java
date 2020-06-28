@@ -33,9 +33,9 @@ public class ProductItemServiceTests {
 
 	@Test
 	void listTest() {
-		List<ProductItemEnt> productItemList = new ArrayList<>();
-		ProductItemEnt productLifeBuoyCare = createProductItem("Care", "Unilever", "Lifebuoy", "50gm", "50gm + 12% extra");
-		ProductItemEnt productLifeBuoyNature= createProductItem("Nature", "Unilever", "Lifebuoy", "50gm", "50gm + 12% extra");
+		List<ProductItemDTO> productItemList = new ArrayList<>();
+		ProductItemDTO productLifeBuoyCare = createProductItem("Care", "Unilever", "Lifebuoy", "50gm", "50gm + 12% extra");
+		ProductItemDTO productLifeBuoyNature= createProductItem("Nature", "Unilever", "Lifebuoy", "50gm", "50gm + 12% extra");
 
 		productItemList.add(productLifeBuoyCare);
 		productItemList.add(productLifeBuoyNature);
