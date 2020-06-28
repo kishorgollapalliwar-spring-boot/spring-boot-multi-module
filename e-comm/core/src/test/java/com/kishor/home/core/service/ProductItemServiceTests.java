@@ -113,13 +113,13 @@ public class ProductItemServiceTests {
 		assertThat(productDTO.getBrand()).isEqualTo(productDTO2.getBrand());
 	}
 
-	private ProductItemEnt createProductItem(final String name, final String manufacturer, final String brand, final String productItemName, final String productItemDesc) {
-		ProductItemEnt productItemEnt = new ProductItemEnt();
-		productItemEnt.setDescription(productItemDesc);
-		productItemEnt.setName(productItemName);
-		productItemEnt.setProduct(createProduct(name, manufacturer, brand));
+	private ProductItemDTO createProductItem(final String name, final String manufacturer, final String brand, final String productItemName, final String productItemDesc) {
+		ProductItemDTO productItemDTO = new ProductItemDTO();
+		productItemDTO.setDescription(productItemDesc);
+		productItemDTO.setName(productItemName);
+		productItemDTO.setProduct(createProduct(name, manufacturer, brand));
 
-		return productItemEnt;
+		return productItemDTO;
 	}
 
 	private ProductEnt createProduct(final String name, final String manufacturer, final String brand) {
