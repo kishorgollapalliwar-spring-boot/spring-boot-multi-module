@@ -122,12 +122,12 @@ public class ProductItemServiceTests {
 		return productItemDTO;
 	}
 
-	private ProductEnt createProduct(final String name, final String manufacturer, final String brand) {
-		ProductEnt productEnt = new ProductEnt();
-		productEnt.setName(name);
-		productEnt.setManufacturer(manufacturer);
-		productEnt.setBrand(brand);
+	private ProductDTO createProduct(final String name, final String manufacturer, final String brand) {
+		ProductDTO productDTO = new ProductDTO();
+		productDTO.setName(name);
+		productDTO.setManufacturer(manufacturer);
+		productDTO.setBrand(brand);
 
-		return productEnt;
+		return productDTO;
 	}
 }
