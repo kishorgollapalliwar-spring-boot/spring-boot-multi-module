@@ -55,7 +55,7 @@ public class ProductItemServiceTests {
 
 	@Test
 	void createTest() {
-		List<ProductItemEnt> productItemList = new ArrayList<>();
+		List<ProductItemDTO> productItemList = new ArrayList<>();
 		int initialSize = productItemList.size();
 
 		doAnswer(invocation -> {
@@ -63,7 +63,7 @@ public class ProductItemServiceTests {
 			return invocation.getArgument(0);
 		}).when(productItemRepo).save(Mockito.any(ProductItemEnt.class));
 
-		ProductItemEnt productItemSaved = productItemService.create(createProductItem("Care", "Unilever", "Lifebuoy", "50gm", "50gm + 12% extra"));
+		ProductItemDTO productItemSaved = productItemService.create(createProductItem("Care", "Unilever", "Lifebuoy", "50gm", "50gm + 12% extra"));
 		assertThat(productItemSaved).isNotNull();
 		assertThat(productItemSaved).isEqualTo(productItemList.get(0));
 		assertThat(initialSize + 1).isEqualTo(productItemList.size());
