@@ -73,13 +73,13 @@ public class ProductItemServiceTests {
 
 	@Test
 	void searchTest() {
-		ProductItemEnt productItem = createProductItem("Care", "Unilever", "Lifebuoy", "50gm", "50gm + 12% extra");
-		List<ProductItemEnt> productItemList = new ArrayList<>();
+		ProductItemDTO productItem = createProductItem("Care", "Unilever", "Lifebuoy", "50gm", "50gm + 12% extra");
+		List<ProductItemDTO> productItemList = new ArrayList<>();
 		productItemList.add(productItem);
 
 		doReturn(productItemList).when(productItemRepo).findByProduct(Mockito.any(ProductEnt.class));
 
-		List<ProductItemEnt> productItemListReturned = productItemService.searchByProduct(new ProductEnt());
+		List<ProductItemDTO> productItemListReturned = productItemService.searchByProduct(new ProductDTO());
 		compareProductItem(productItem, productItemListReturned.get(0));
 	}
 
