@@ -10,6 +10,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -23,6 +24,7 @@ import com.kishor.home.core.repo.ProductItemRepo;
 @SpringBootTest
 public class ProductItemServiceTests {
 	@Autowired private ProductItemService productItemService;
+	@Autowired private ModelMapper modelMapper;
 
 	@MockBean private ProductItemRepo productItemRepo;
 
@@ -33,12 +35,12 @@ public class ProductItemServiceTests {
 
 	@Test
 	void listTest() {
-		List<ProductItemDTO> productItemList = new ArrayList<>();
+		List<ProductItemEnt> productItemList = new ArrayList<>();
 		ProductItemDTO productLifeBuoyCare = createProductItem("Care", "Unilever", "Lifebuoy", "50gm", "50gm + 12% extra");
 		ProductItemDTO productLifeBuoyNature= createProductItem("Nature", "Unilever", "Lifebuoy", "50gm", "50gm + 12% extra");
 
-		productItemList.add(productLifeBuoyCare);
-		productItemList.add(productLifeBuoyNature);
+		productItemList.add(productLifeBuoyCare.getEntity(modelMapper, ProductItemEnt.class));
+		productItemList.add(productLifeBuoyNature.getEntity(modelMapper, ProductItemEnt.class));
 
 		doAnswer(invocation -> {
 			return productItemList;
@@ -49,7 +51,7 @@ public class ProductItemServiceTests {
 		assertThat(fetchedProductItemList.isEmpty()).isFalse();
 
 		for (int index = 0; index < fetchedProductItemList.size(); index++) {
-			compareProductItem(fetchedProductItemList.get(index), productItemList.get(index));
+			compareProductItem(fetchedProductItemList.get(index), new ProductItemDTO(modelMapper, productItemList.get(index)));
 		}
 	}
 
