@@ -57,7 +57,7 @@ public class ProductItemServiceTests {
 
 	@Test
 	void createTest() {
-		List<ProductItemDTO> productItemList = new ArrayList<>();
+		List<ProductItemEnt> productItemList = new ArrayList<>();
 		int initialSize = productItemList.size();
 
 		doAnswer(invocation -> {
@@ -67,10 +67,10 @@ public class ProductItemServiceTests {
 
 		ProductItemDTO productItemSaved = productItemService.create(createProductItem("Care", "Unilever", "Lifebuoy", "50gm", "50gm + 12% extra"));
 		assertThat(productItemSaved).isNotNull();
-		assertThat(productItemSaved).isEqualTo(productItemList.get(0));
+		assertThat(productItemSaved).isEqualTo(new ProductItemDTO(modelMapper, productItemList.get(0)));
 		assertThat(initialSize + 1).isEqualTo(productItemList.size());
 
-		compareProductItem(productItemList.get(0), productItemSaved);
+		compareProductItem(new ProductItemDTO(modelMapper, productItemList.get(0)), productItemSaved);
 	}
 
 	@Test
