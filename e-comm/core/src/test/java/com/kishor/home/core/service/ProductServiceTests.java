@@ -10,16 +10,19 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import com.kishor.home.core.dto.ProductDTO;
 import com.kishor.home.core.entity.ProductEnt;
 import com.kishor.home.core.repo.ProductRepo;
 
 @SpringBootTest
 public class ProductServiceTests {
 	@Autowired private ProductService productService;
+	@Autowired private ModelMapper modelMapper;
 
 	@MockBean private ProductRepo productRepo;
 
@@ -38,12 +41,12 @@ public class ProductServiceTests {
 			return invocation.getArgument(0);
 		}).when(productRepo).save(Mockito.any(ProductEnt.class));
 
-		ProductEnt productSaved = productService.create(createProduct("Care", "Unilever", "Lifebuoy"));
+		ProductDTO productSaved = productService.create(new ProductDTO(modelMapper, createProduct("Care", "Unilever", "Lifebuoy")));
 		assertThat(productSaved).isNotNull();
-		assertThat(productSaved).isEqualTo(productList.get(0));
+		assertThat(productSaved.getEntity(modelMapper, ProductEnt.class)).isEqualTo(productList.get(0));
 		assertThat(initialSize+1).isEqualTo(productList.size());
 
-		compareProduct(productList.get(0), productSaved);
+		compareProduct(productList.get(0), productSaved.getEntity(modelMapper, ProductEnt.class));
 	}
 
 	@Test
