@@ -76,8 +76,8 @@ public class ProductItemServiceTests {
 	@Test
 	void searchTest() {
 		ProductItemDTO productItem = createProductItem("Care", "Unilever", "Lifebuoy", "50gm", "50gm + 12% extra");
-		List<ProductItemDTO> productItemList = new ArrayList<>();
-		productItemList.add(productItem);
+		List<ProductItemEnt> productItemList = new ArrayList<>();
+		productItemList.add(productItem.getEntity(modelMapper, ProductItemEnt.class));
 
 		doReturn(productItemList).when(productItemRepo).findByProduct(Mockito.any(ProductEnt.class));
 
