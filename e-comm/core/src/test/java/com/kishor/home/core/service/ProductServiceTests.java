@@ -62,12 +62,12 @@ public class ProductServiceTests {
 			return productList;
 		}).when(productRepo).findAll();
 
-		List<ProductEnt> fetchedProductList = productService.list();
+		List<ProductDTO> fetchedProductList = productService.list();
 		assertThat(fetchedProductList).isNotNull();
 		assertThat(fetchedProductList.isEmpty()).isFalse();
 
 		for (int index = 0; index < fetchedProductList.size(); index++) {
-			compareProduct(fetchedProductList.get(index), productList.get(index));
+			compareProduct(fetchedProductList.get(index).getEntity(modelMapper, ProductEnt.class), productList.get(index));
 		}
 	}
 
