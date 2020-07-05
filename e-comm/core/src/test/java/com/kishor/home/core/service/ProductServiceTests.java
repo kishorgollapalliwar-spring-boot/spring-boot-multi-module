@@ -73,11 +73,11 @@ public class ProductServiceTests {
 
 	@Test
 	void searchTest() {
-		ProductEnt productEnt1 = createProduct("Care", "Unilever", "Lifebuoy");
-		doReturn(productEnt1).when(productRepo).findByNameAndBrand(Mockito.anyString(), Mockito.anyString());
+		ProductEnt productEnt = createProduct("Care", "Unilever", "Lifebuoy");
+		doReturn(productEnt).when(productRepo).findByNameAndBrand(Mockito.anyString(), Mockito.anyString());
 
-		ProductEnt productEnt2 = productService.search("Care", "Lifebuoy");
-		compareProduct(productEnt1, productEnt2);
+		ProductDTO productDTO = productService.search("Care", "Lifebuoy");
+		compareProduct(productEnt, productDTO.getEntity(modelMapper, ProductEnt.class));
 	}
 
 	private void compareProduct(final ProductEnt productEnt1, final ProductEnt productEnt2) {
