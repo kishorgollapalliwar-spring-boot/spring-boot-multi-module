@@ -17,7 +17,7 @@ import com.kishor.home.core.entity.ProductItemEnt;
 import com.kishor.home.core.repo.ProductItemRepo;
 
 @Service
-public class ProductItemService {
+public class ProductItemService implements BaseService <ProductItemEnt, ProductItemDTO> {
 	private ProductItemRepo productItemRepo;
 	private ModelMapper modelMapper;
 
@@ -70,5 +70,15 @@ public class ProductItemService {
 	public ProductItemDTO getById(final Integer id) {
 		Optional<ProductItemEnt> productItem = productItemRepo.findById(id);
 		return productItem.isPresent() ? new ProductItemDTO(modelMapper, productItem.get()) : null;
+	}
+
+	@Override
+	public ProductItemDTO getDTO(ProductItemEnt entity) {
+		return new ProductItemDTO(modelMapper, entity);
+	}
+
+	@Override
+	public ProductItemEnt getEntity(ProductItemDTO dto) {
+		return dto.getEntity(modelMapper, ProductItemEnt.class);
 	}
 }
