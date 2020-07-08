@@ -10,7 +10,6 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -24,7 +23,6 @@ import com.kishor.home.core.repo.ProductItemRepo;
 @SpringBootTest
 public class ProductItemServiceTests {
 	@Autowired private ProductItemService productItemService;
-	@Autowired private ModelMapper modelMapper;
 
 	@MockBean private ProductItemRepo productItemRepo;
 
@@ -39,8 +37,8 @@ public class ProductItemServiceTests {
 		ProductItemDTO productLifeBuoyCare = createProductItem("Care", "Unilever", "Lifebuoy", "50gm", "50gm + 12% extra");
 		ProductItemDTO productLifeBuoyNature= createProductItem("Nature", "Unilever", "Lifebuoy", "50gm", "50gm + 12% extra");
 
-		productItemList.add(productLifeBuoyCare.getEntity(modelMapper, ProductItemEnt.class));
-		productItemList.add(productLifeBuoyNature.getEntity(modelMapper, ProductItemEnt.class));
+		productItemList.add(productItemService.getEntity(productLifeBuoyCare));
+		productItemList.add(productItemService.getEntity(productLifeBuoyNature));
 
 		doAnswer(invocation -> {
 			return productItemList;
@@ -51,7 +49,7 @@ public class ProductItemServiceTests {
 		assertThat(fetchedProductItemList.isEmpty()).isFalse();
 
 		for (int index = 0; index < fetchedProductItemList.size(); index++) {
-			compareProductItem(fetchedProductItemList.get(index), new ProductItemDTO(modelMapper, productItemList.get(index)));
+			compareProductItem(fetchedProductItemList.get(index), productItemService.getDTO(productItemList.get(index)));
 		}
 	}
 
@@ -67,17 +65,17 @@ public class ProductItemServiceTests {
 
 		ProductItemDTO productItemSaved = productItemService.create(createProductItem("Care", "Unilever", "Lifebuoy", "50gm", "50gm + 12% extra"));
 		assertThat(productItemSaved).isNotNull();
-		assertThat(productItemSaved).isEqualTo(new ProductItemDTO(modelMapper, productItemList.get(0)));
+		assertThat(productItemSaved).isEqualTo(productItemService.getDTO(productItemList.get(0)));
 		assertThat(initialSize + 1).isEqualTo(productItemList.size());
 
-		compareProductItem(new ProductItemDTO(modelMapper, productItemList.get(0)), productItemSaved);
+		compareProductItem(productItemService.getDTO(productItemList.get(0)), productItemSaved);
 	}
 
 	@Test
 	void searchTest() {
 		ProductItemDTO productItem = createProductItem("Care", "Unilever", "Lifebuoy", "50gm", "50gm + 12% extra");
 		List<ProductItemEnt> productItemList = new ArrayList<>();
-		productItemList.add(productItem.getEntity(modelMapper, ProductItemEnt.class));
+		productItemList.add(productItemService.getEntity(productItem));
 
 		doReturn(productItemList).when(productItemRepo).findByProduct(Mockito.any(ProductEnt.class));
 
