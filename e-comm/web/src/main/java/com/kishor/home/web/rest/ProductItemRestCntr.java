@@ -17,7 +17,12 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping(path = {"/product-item"})
 @Slf4j
 public class ProductItemRestCntr {
-	@Autowired private ProductItemService productItemService;
+	private ProductItemService productItemService;
+
+	@Autowired
+	public ProductItemRestCntr(final ProductItemService productItemService) {
+		this.productItemService = productItemService;
+	}
 
 	@GetMapping(path = {"/", "/list"})
 	public List<ProductItemDTO> list() {
