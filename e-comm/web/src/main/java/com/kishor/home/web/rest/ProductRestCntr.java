@@ -14,7 +14,7 @@ import com.kishor.home.core.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@RequestMapping(path = {"/product"})
+@RequestMapping(path = {"/rest/product"})
 @Slf4j
 public class ProductRestCntr {
 	private ProductService productService;
