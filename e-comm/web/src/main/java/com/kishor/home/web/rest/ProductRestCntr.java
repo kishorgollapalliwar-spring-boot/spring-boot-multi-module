@@ -14,7 +14,7 @@ import com.kishor.home.core.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@RequestMapping(path = {"/rest/product"})
+@RequestMapping(path = {"/rest"})
 @Slf4j
 public class ProductRestCntr {
 	private ProductService productService;
@@ -24,12 +24,12 @@ public class ProductRestCntr {
 		this.productService = productService;
 	}
 
-	@GetMapping(path = {"/", "/list"})
+	@GetMapping(path = {"/product", "/productlist"})
 	public List<ProductDTO> list() {
 		return productService.list();
 	}
 
-	@GetMapping(path = {"/{id}"})
+	@GetMapping(path = {"/product/{id}"})
 	public ProductDTO listDto(@PathVariable("id") Integer id) {
 		log.info("Fetching product with id {}.", id);
 		return productService.getById(id);
