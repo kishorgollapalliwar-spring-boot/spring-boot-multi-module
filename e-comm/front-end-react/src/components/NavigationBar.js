@@ -7,7 +7,7 @@ class NavigationBar extends React.Component {
 		return (
 			<div>
 				<Navbar bg="dark" variant="dark">
-					<Navbar.Brand href="/">React App E-comm</Navbar.Brand>
+					<Navbar.Brand href="/">React App E-Comm</Navbar.Brand>
 					<Nav className="mr-auto">
 						<Nav.Link href="/product">Product</Nav.Link>
 						<Nav.Link href="/item">Item</Nav.Link>
