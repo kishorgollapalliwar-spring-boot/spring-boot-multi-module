@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import NavigationBar from './components/NavigationBar';
 import Home from './components/Home';
+import Footer from './components/Footer';
 import {Container, Row, Col} from 'react-bootstrap';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           </Col>
         </Row>
       </Container>
+      <Footer />
     </div>
   );
 }
