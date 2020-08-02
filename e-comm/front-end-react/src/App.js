@@ -5,6 +5,7 @@ import NavigationBar from './components/NavigationBar';
 import Home from './components/Home';
 import Footer from './components/Footer';
 import Product from './components/Product';
+import ProductItem from './components/ProductItem';
 import {Container, Row, Col} from 'react-bootstrap';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Col lg={12} style={marginTop}>
             <Home />
             <Product />
+            <ProductItem />
           </Col>
         </Row>
       </Container>
