@@ -1,12 +1,14 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+
+import {Container, Row, Col} from 'react-bootstrap';
+
 import NavigationBar from './components/NavigationBar';
 import Home from './components/Home';
 import Footer from './components/Footer';
 import Product from './components/Product';
 import ProductItem from './components/ProductItem';
-import {Container, Row, Col} from 'react-bootstrap';
 
 function App() {
   const marginTop = {
