@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {Navbar, Nav} from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 
 
 class NavigationBar extends React.Component {
@@ -8,10 +9,13 @@ class NavigationBar extends React.Component {
 		return (
 			<div>
 				<Navbar bg="dark" variant="dark">
-					<Navbar.Brand href="/">React App E-Comm</Navbar.Brand>
+					<Link to={""} className="navbar-brand">
+						React App E-Comm
+					</Link>
+					<Navbar.Brand href="/"></Navbar.Brand>
 					<Nav className="mr-auto">
-						<Nav.Link href="/product">Product</Nav.Link>
-						<Nav.Link href="/item">Item</Nav.Link>
+						<Link to={"product"} className="nav-link">Product</Link>
+						<Link to={"product-item"} className="nav-link">Item</Link>
 					</Nav>
 				</Navbar>
 			</div>
